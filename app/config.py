@@ -57,7 +57,7 @@ class Development(object):
     BLUEPRINTS = ["auth"]
     STATICFILES = []
     MIDDLEWARES = []
-    APIS = []
+    APIS = ["Article"]
     ERROR_HANDLERS = {422: "api_errors", 400: "api_errors"}
     TASKS = []
     CONTEXT_PROCESSORS = []
@@ -87,6 +87,9 @@ class Development(object):
     REDIS_PORT = 6380
     CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}"
     CELERY_BROKER_URL = CELERY_RESULT_BACKEND
+    # others
+    ALLOWED_IMAGE_FILES = ("png", "jpg", "jpeg")
+    MEDIA_DIR = "media/"
 
 
 class Production(Development):
