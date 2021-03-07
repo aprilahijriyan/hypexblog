@@ -1,0 +1,4 @@
+zemfrog>=4.0.1
+redis
+gunicorn
+psycopg2-binary

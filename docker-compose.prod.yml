@@ -1,0 +1,41 @@
+version: '3.3'
+services:
+  app:
+    restart: on-failure
+    build: ./app/
+    environment: 
+      ZEMFROG_ENV: "production"
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./app/.flaskenv
+    networks:
+      inet:
+
+  db:
+    image: "postgres" # use latest official postgres version
+    restart: on-failure
+    env_file: database.prod.env
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+    ports:
+      - "5433:5432"
+    networks:
+      inet:
+
+  redis:
+    image: "redis:alpine"
+    restart: on-failure
+    ports:
+      - "6380:6379"
+    networks:
+      inet:
+
+volumes:
+  db-data:
+
+networks:
+  inet:
