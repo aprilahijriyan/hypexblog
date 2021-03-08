@@ -178,7 +178,7 @@ def delete(id):
     Delete data.
     """
 
-    model = Article.query.get(id)
+    model = Article.query.filter_by(user_id=current_user.id, id=id).first()
     if model:
         db_delete(model)
         status_code = 200
