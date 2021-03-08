@@ -44,7 +44,7 @@ class Development(object):
         "zemfrog.commands.extension",
         "zemfrog.commands.model",
         "zemfrog.commands.task",
-        "zemfrog.commands.user",
+        # "zemfrog.commands.user",
         "zemfrog.commands.role",
         "zemfrog.commands.permission",
         "zemfrog.commands.loader",
@@ -52,11 +52,13 @@ class Development(object):
         "zemfrog.commands.context",
         "zemfrog.commands.filter",
         "zemfrog.commands.app",
+        "reset",
+        "user",
     ]
     BLUEPRINTS = ["auth"]
     STATICFILES = []
     MIDDLEWARES = []
-    APIS = ["Article"]
+    APIS = ["Article", "User"]
     ERROR_HANDLERS = {422: "api_errors", 400: "api_errors"}
     TASKS = []
     CONTEXT_PROCESSORS = []

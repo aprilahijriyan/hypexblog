@@ -1,10 +1,9 @@
 from datetime import datetime, timedelta
-from flask_jwt_extended import create_access_token, decode_token, get_raw_jwt
+from flask_jwt_extended import create_access_token, decode_token
 from flask_apispec import use_kwargs, marshal_with
 from jwt import DecodeError, ExpiredSignatureError
-from marshmallow import fields
 from werkzeug.security import generate_password_hash, check_password_hash
-from zemfrog.decorators import http_code, authenticate
+from zemfrog.decorators import http_code
 from zemfrog.helper import (
     db_add,
     db_update,
@@ -21,41 +20,8 @@ from zemfrog.models import (
     RequestPasswordResetSchema,
 )
 
-from zemfrog.globals import ma
-from models.user import User, Log, Role, Permission
+from models.user import Log, User
 from tasks.mail import send_email
-
-
-class PermissionSchema(ma.SQLAlchemyAutoSchema):
-    class Meta:
-        model = Permission
-
-
-class RoleSchema(ma.SQLAlchemyAutoSchema):
-    class Meta:
-        model = Role
-
-    permissions = fields.List(fields.Nested(PermissionSchema()))
-
-
-class UserDetailSchema(ma.SQLAlchemyAutoSchema):
-    class Meta:
-        model = User
-        exclude = ("password",)
-
-    roles = fields.List(fields.Nested(RoleSchema()))
-
-
-@authenticate()
-@marshal_with(UserDetailSchema)
-def user_detail():
-    """
-    User detail info.
-    """
-
-    email = get_raw_jwt().get("identity")
-    user = User.query.filter_by(email=email).first()
-    return user
 
 
 @use_kwargs(LoginSchema(), location="form")

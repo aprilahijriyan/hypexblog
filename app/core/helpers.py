@@ -2,7 +2,7 @@ import os
 
 from distutils.dir_util import remove_tree
 from hashlib import md5
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from flask import current_app
 from filetype import is_image
 
@@ -51,7 +51,7 @@ def save_to(filename, buffer, email, outdir=None):
         os.makedirs(output_dir, exist_ok=True)
 
     output_file = os.path.join(output_dir, filehash)
-    with open(output_file, "w") as fp:
+    with open(output_file, "wb") as fp:
         fp.write(buffer)
 
     return output_file
