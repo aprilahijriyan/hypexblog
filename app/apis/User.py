@@ -4,11 +4,12 @@ from flask_jwt_extended import current_user
 from zemfrog.extensions.apispec import FileField
 from zemfrog.models import DefaultResponseSchema
 from flask_apispec import marshal_with, use_kwargs
-from marshmallow import fields, validates, ValidationError
+from marshmallow import fields, validates, ValidationError, post_load
 from zemfrog.globals import ma
 from models.user import User, Role, Permission
 from zemfrog.validators import validate_password_length, validate_username
 from core.media import save_image_file
+from core.validators import image_file_required
 
 
 class PermissionSchema(ma.SQLAlchemyAutoSchema):
@@ -59,8 +60,22 @@ class UpdateUserSchema(ma.SQLAlchemyAutoSchema):
 
 
 class FileUploadSchema(ma.Schema):
-    profile_image = FileField(validate=save_image_file)
-    cover_image = FileField(validate=save_image_file)
+    profile_image = FileField(validate=image_file_required)
+    cover_image = FileField(validate=image_file_required)
+
+    @post_load
+    def load_data(self, data, **kwargs):
+        profile_image = data.get("profile_image")
+        if profile_image:
+            url = save_image_file(profile_image)
+            data["profile_image"] = url
+
+        cover_image = data.get("cover_image")
+        if cover_image:
+            url = save_image_file(cover_image)
+            data["cover_image"] = url
+
+        return data
 
 
 @authenticate()
@@ -84,21 +99,11 @@ def update(**kwds):
     Update data.
     """
 
-    print(kwds)
     first_name = kwds.get("first_name", current_user.first_name)
     last_name = kwds.get("last_name", current_user.last_name)
     name = first_name + " " + last_name
     kwds["name"] = name
-    profile_image = kwds.get("profile_image")
-    if profile_image:
-        profile_image = save_image_file(profile_image)
-        kwds["profile_image"] = profile_image
-
-    cover_image = kwds.get("cover_image")
-    if cover_image:
-        cover_image = save_image_file(cover_image)
-        kwds["cover_image"] = cover_image
-
+    kwds["nickname"] = name.replace(" ", "").lower()
     db_update(current_user, **kwds)
     status_code = 200
     message = "Successfully updating data."

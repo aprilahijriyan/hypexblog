@@ -1,5 +1,6 @@
 from core.helpers import is_image_file, save_to
 from marshmallow import ValidationError
+from flask import url_for
 from werkzeug.datastructures import FileStorage
 from flask_jwt_extended import current_user
 
@@ -13,4 +14,5 @@ def save_image_file(filestorage: FileStorage):
     output_file = save_to(
         filename, buffer, current_user.email, outdir=current_user.nickname
     )
-    return output_file
+    url = url_for("media", filename=output_file)
+    return url

@@ -45,7 +45,8 @@ def save_to(filename, buffer, email, outdir=None):
     filename = secure_filename(filename)
     ext = get_extension(filename)
     filehash = get_file_hash(filename, email) + "." + ext
-    output_dir = current_app.config["MEDIA_DIR"]
+    media_dir = current_app.config["MEDIA_DIR"]
+    output_dir = media_dir
     if outdir is not None:
         output_dir = os.path.join(output_dir, outdir)
         os.makedirs(output_dir, exist_ok=True)
@@ -54,4 +55,4 @@ def save_to(filename, buffer, email, outdir=None):
     with open(output_file, "wb") as fp:
         fp.write(buffer)
 
-    return output_file
+    return output_file[len(media_dir) :]

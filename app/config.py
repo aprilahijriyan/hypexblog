@@ -56,7 +56,7 @@ class Development(object):
         "user",
     ]
     BLUEPRINTS = ["auth"]
-    STATICFILES = []
+    STATICFILES = [("/media", "media", "media")]
     MIDDLEWARES = []
     APIS = ["Article", "User"]
     ERROR_HANDLERS = {422: "api_errors", 400: "api_errors"}
