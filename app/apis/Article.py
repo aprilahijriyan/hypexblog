@@ -2,7 +2,7 @@ from zemfrog.decorators import http_code, authenticate
 from zemfrog.helper import db_add, db_delete, db_update
 from zemfrog.models import DefaultResponseSchema
 from flask_apispec import marshal_with, use_kwargs
-from flask_jwt_extended import current_user
+from flask_jwt_extended import current_user, jwt_optional
 from marshmallow import fields
 from slugify import slugify
 from zemfrog.globals import ma
@@ -60,6 +60,7 @@ class LimitArticleSchema(ma.Schema):
     limit = fields.Integer()
 
 
+@jwt_optional
 @use_kwargs(LimitArticleSchema(), location="query")
 @marshal_with(ReadArticleSchema(many=True), 200)
 def read(**kwds):
@@ -86,7 +87,7 @@ def read(**kwds):
     if text:
         query = query.filter(Article.text.contains(text))
 
-    if drafted:
+    if drafted and current_user and current_user.email == by:
         query = query.filter(Article.drafted == drafted)
 
     if tags:
