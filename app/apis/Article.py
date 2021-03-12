@@ -1,11 +1,12 @@
-from zemfrog.decorators import http_code, authenticate
-from zemfrog.helper import db_add, db_delete, db_update
-from zemfrog.models import DefaultResponseSchema
 from flask_apispec import marshal_with, use_kwargs
 from flask_jwt_extended import current_user, jwt_optional
 from marshmallow import fields
 from slugify import slugify
+from zemfrog.decorators import authenticate, http_code
 from zemfrog.globals import ma
+from zemfrog.helper import db_add, db_delete, db_update
+from zemfrog.models import DefaultResponseSchema
+
 from models.Article import Article
 from models.Tag import Tag
 from models.user import User

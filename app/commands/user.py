@@ -1,7 +1,8 @@
+from flask.cli import with_appcontext
 from zemfrog.commands.user import group
 from zemfrog.helper import db_commit
+
 from models.user import User
-from flask.cli import with_appcontext
 
 
 @group.command()

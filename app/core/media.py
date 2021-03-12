@@ -1,8 +1,9 @@
-from core.helpers import is_image_file, save_to
-from marshmallow import ValidationError
 from flask import url_for
-from werkzeug.datastructures import FileStorage
 from flask_jwt_extended import current_user
+from marshmallow import ValidationError
+from werkzeug.datastructures import FileStorage
+
+from core.helpers import is_image_file, save_to
 
 
 def save_image_file(filestorage: FileStorage):

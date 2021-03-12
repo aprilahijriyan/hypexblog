@@ -1,13 +1,14 @@
 from datetime import datetime, timedelta
+
+from flask_apispec import marshal_with, use_kwargs
 from flask_jwt_extended import create_access_token, decode_token
-from flask_apispec import use_kwargs, marshal_with
 from jwt import DecodeError, ExpiredSignatureError
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from zemfrog.decorators import http_code
 from zemfrog.helper import (
     db_add,
-    db_update,
     db_commit,
+    db_update,
     get_mail_template,
     get_user_roles,
 )

@@ -1,10 +1,10 @@
 import os
-
 from distutils.dir_util import remove_tree
 from hashlib import md5
-from werkzeug.utils import secure_filename
-from flask import current_app
+
 from filetype import is_image
+from flask import current_app
+from werkzeug.utils import secure_filename
 
 
 def get_extension(filename):

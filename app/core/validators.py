@@ -1,6 +1,8 @@
-from core.helpers import is_image_file
-from marshmallow import ValidationError
 from io import BytesIO
+
+from marshmallow import ValidationError
+
+from core.helpers import is_image_file
 
 
 def image_file_required(value):

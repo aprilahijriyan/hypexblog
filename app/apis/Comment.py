@@ -1,12 +1,13 @@
-from zemfrog.decorators import http_code, authenticate
-from zemfrog.helper import db_add, db_delete, db_update
-from zemfrog.models import DefaultResponseSchema
 from flask_apispec import marshal_with, use_kwargs
 from flask_jwt_extended import current_user
 from marshmallow import fields
+from zemfrog.decorators import authenticate, http_code
 from zemfrog.globals import ma
-from models.Comment import Comment
+from zemfrog.helper import db_add, db_delete, db_update
+from zemfrog.models import DefaultResponseSchema
+
 from models.Article import Article
+from models.Comment import Comment
 
 
 class CreateCommentSchema(ma.Schema):

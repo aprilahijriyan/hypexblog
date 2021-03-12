@@ -1,15 +1,16 @@
-from zemfrog.decorators import http_code, authenticate
-from zemfrog.helper import db_delete, db_update
-from flask_jwt_extended import current_user
-from zemfrog.extensions.apispec import FileField
-from zemfrog.models import DefaultResponseSchema
 from flask_apispec import marshal_with, use_kwargs
-from marshmallow import fields, validates, ValidationError, post_load
+from flask_jwt_extended import current_user
+from marshmallow import ValidationError, fields, post_load, validates
+from zemfrog.decorators import authenticate, http_code
+from zemfrog.extensions.apispec import FileField
 from zemfrog.globals import ma
-from models.user import User, Role, Permission
+from zemfrog.helper import db_delete, db_update
+from zemfrog.models import DefaultResponseSchema
 from zemfrog.validators import validate_password_length, validate_username
+
 from core.media import save_image_file
 from core.validators import image_file_required
+from models.user import Permission, Role, User
 
 
 class PermissionSchema(ma.SQLAlchemyAutoSchema):
