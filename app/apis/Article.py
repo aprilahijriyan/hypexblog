@@ -77,6 +77,9 @@ def read(**kwds):
     limit = kwds.get("limit")
     query = Article.query
     if by:
+        if current_user and current_user.email != by:
+            drafted = False
+
         user = User.query.filter_by(email=by).first()
         if user:
             query = query.filter(Article.user_id == user.id)
@@ -87,8 +90,7 @@ def read(**kwds):
     if text:
         query = query.filter(Article.text.contains(text))
 
-    if drafted and current_user and current_user.email == by:
-        query = query.filter(Article.drafted == drafted)
+    query = query.filter(Article.drafted == drafted)
 
     if tags:
         query = query.filter(Article.tags.any(Tag.name.in_(tags)))

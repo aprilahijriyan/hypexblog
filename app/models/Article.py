@@ -20,7 +20,7 @@ class Article(db.Model):
     slug = Column(String(255), nullable=False, unique=True)
     image = Column(UnicodeText)
     text = Column(UnicodeText)
-    drafted = Column(Boolean)
+    drafted = Column(Boolean, default=False)
     tags = relationship("Tag")
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, onupdate=datetime.utcnow)
