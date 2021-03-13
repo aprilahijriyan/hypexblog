@@ -72,7 +72,7 @@ def read(**kwds):
     by = kwds.get("by")
     title = kwds.get("title")
     text = kwds.get("text")
-    drafted = kwds.get("drafted")
+    drafted = kwds.get("drafted", False)
     tags = kwds.get("tags")
     offset = kwds.get("offset")
     limit = kwds.get("limit")
