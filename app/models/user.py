@@ -9,6 +9,13 @@ class User(UserMixin, db.Model):
     profile_image = Column(UnicodeText)
     cover_image = Column(UnicodeText)
     roles = relationship("Role", secondary="role_links", lazy="dynamic")
+    following = relationship(
+        "User",
+        secondary="follower_links",
+        primaryjoin="User.id == FollowerLinks.user_id",
+        secondaryjoin="User.id == FollowerLinks.following_id",
+        backref="followers",
+    )
 
 
 class Role(RoleMixin, db.Model):

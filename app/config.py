@@ -58,7 +58,16 @@ class Development(object):
     BLUEPRINTS = ["auth"]
     STATICFILES = [("/media", "media", "media")]
     MIDDLEWARES = []
-    APIS = ["Article", "User", "Comment", "Reply", "Like", "Bookmark", "Media"]
+    APIS = [
+        "Article",
+        "User",
+        "Comment",
+        "Reply",
+        "Like",
+        "Bookmark",
+        "Media",
+        "Follower",
+    ]
     ERROR_HANDLERS = {422: "api_errors", 400: "api_errors"}
     TASKS = []
     CONTEXT_PROCESSORS = []
