@@ -5,12 +5,22 @@ Open Source :heart: Blogging Platform For Community :dizzy:
 
 This project is still under `development`, so see you in the future!
 
+# Features
+
+Currently hypexblog only supports:
+
+* [API User](#1)
+* [API Comment](#2)
+* [API Article](#4)
+* [API Likes](#5)
+* [API Bookmarks](#6)
+
 # Usage
 
 Clone this repository and move to it, e.g:
 
 ```sh
-git clone https://github.com/ngedev/hypexblog --depth 1
+git clone https://github.com/aprilahijriyan/hypexblog --depth 1
 cd hypexblog
 ```
 
