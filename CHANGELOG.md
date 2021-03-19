@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v1.0.2 (19-03-2021)
+
+* Merge branch 'v1.0.2' into main
+* 💥 NEW: Close API Followers #9
+* Merge branch 'feature/api-media' into develop
+* 💥 NEW: add isort
+* 💥 NEW: Close API Media #8
+* 🐛 FIX: downgrade sqlalchemy
+
 ## v1.0.1 (14-03-2021)
 
 * Merge branch 'v1.0.1' into main. [aprilahijriyan]
