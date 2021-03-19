@@ -9,11 +9,13 @@ This project is still under `development`, so see you in the future!
 
 Currently hypexblog only supports:
 
-* [API User](#1)
-* [API Comment](#2)
-* [API Article](#4)
-* [API Likes](#5)
-* [API Bookmarks](#6)
+* [API User](https://github.com/aprilahijriyan/hypexblog/issues/1)
+* [API Comment](https://github.com/aprilahijriyan/hypexblog/issues/2)
+* [API Article](https://github.com/aprilahijriyan/hypexblog/issues/4)
+* [API Likes](https://github.com/aprilahijriyan/hypexblog/issues/5)
+* [API Bookmarks](https://github.com/aprilahijriyan/hypexblog/issues/6)
+* [API Media](https://github.com/aprilahijriyan/hypexblog/issues/8)
+* [API Followers](https://github.com/aprilahijriyan/hypexblog/issues/9)
 
 # Usage
 
